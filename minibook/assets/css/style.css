@@ -1,0 +1,254 @@
+/* --- 1. GLOBAL BASE STYLES --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f2f5; /* Clean modern grey */
+    color: #050505;
+    min-height: 100vh;
+}
+
+/* Base body background for Login page (overridden by .dark) */
+body.login-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* --- 2. NAVIGATION BAR --- */
+.navbar { 
+    background: #1877f2; 
+    color: white; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 999;
+    box-sizing: border-box;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between Bell and Profile */
+}
+
+/* --- 3. THE CLICKABLE WRAPPERS --- */
+.icon-wrapper {
+    position: relative; /* Allows the badge to be positioned relative to the bell */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.create-post-header {
+    display: flex;
+    align-items: center; /* Vertically centers the avatar and textarea */
+    gap: 15px;
+    width: 100%;
+}
+
+.create-post-header textarea {
+    flex: 1; /* THIS IS THE FIX: It forces the textarea to fill the remaining space */
+    border: none;
+    background: #f0f2f5;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 15px;
+    outline: none;
+    resize: none; /* Prevents users from stretching it and breaking the card */
+    min-height: 40px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Forces the large images in your screenshot to become small avatars */
+.post-header img.avatar, .create-post-header img.avatar {
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the photo isn't squished */
+}
+
+.post-author-info {
+    display: flex;
+    flex-direction: column; /* Puts name on top, date on bottom */
+    justify-content: center;
+}
+
+.author-name {
+    font-weight: bold;
+    font-size: 15px;
+    color: #050505;
+}
+
+.post-date {
+    font-size: 12px;
+    color: #65676b;
+}
+
+.avatar-nav {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.bell-icon {
+    font-size: 22px;
+}
+
+.badge {
+    position: absolute; /* Moves it out of the normal flow */
+    top: -6px;  /* Adjust these to move it up/down */
+    right: -8px; /* Adjust these to move it left/right */
+    background: #ff3b30;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 2px solid #1877f2; /* Added outline so it stands out against the blue navbar */
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* --- 4. DROPDOWN LOGIC --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    right: 0; 
+    top: 50px; /* Pushes it below the navbar */
+    background-color: white;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.show { display: block !important; }
+
+.dropdown-item, .dropdown-content a {
+    color: #050505;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-item:hover, .dropdown-content a:hover {
+    background-color: #f0f2f5;
+}
+
+/* --- 5. DASHBOARD & CARDS --- */
+.container { 
+    max-width: 600px; 
+    margin: 80px auto 20px auto; /* Added 80px top margin for fixed navbar */
+}
+
+.card { 
+    background: white; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Modern Post Styling */
+.post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.post-content { font-size: 15px; line-height: 1.5; padding: 10px 0; }
+.post-actions { border-top: 1px solid #ced0d4; padding-top: 10px; margin-top: 10px; }
+
+/* --- 6. AUTH/LOGIN CARDS --- */
+.auth-wrapper.single-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full screen height to center vertically */
+}
+
+.auth-card {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 35px; /* More padding for a cleaner look */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* Slightly deeper shadow */
+    text-align: center; /* THIS CENTERS EVERYTHING: MiniBook, Login title, and Button */
+}
+
+.app-title {
+    color: #1877f2;
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.auth-card h3 {
+    color: #1877f2;
+    font-size: 18px;
+    margin: 0 0 25px 0;
+    font-weight: normal;
+    border-bottom: 1px solid #f0f2f5;
+    padding-bottom: 15px;
+}
+
+.auth-card button {
+    width: 70% !important; /* Matches the smaller centered button in your screenshot */
+    margin: 20px auto 10px auto !important; /* 'auto' left/right centers the element */
+    display: block;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* --- 7. MODERN DARK MODE --- */
+body.dark { background-color: #18191a !important; color: #e4e6eb; }
+body.dark .card, body.dark .dropdown-content { background-color: #242526; }
+body.dark .dropdown-content a, body.dark .author-name, body.dark .post-content { color: #e4e6eb; }
+body.dark .dropdown-content a:hover { background-color: #3a3b3c; }
+body.dark input, body.dark textarea { background-color: #3a3b3c; border-color: #4e4f50; color: #e4e6eb; }
+
+/* --- 8. BUTTONS & INPUTS --- */
+button { background: #1877f2; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+button:hover { background: #145dbf; }
+input, textarea { 
+    width: 100% !important; /* FORCES inputs to take the full width of the card */
+    display: block;        /* Ensures they sit on their own lines */
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    padding: 10px; 
+    margin: 10px 0;        /* Adds a little more breathing room between fields */
+    box-sizing: border-box; /* Ensures padding doesn't push the input outside the card */
+}
+.comment-field {
+    width: 100% !important;
+    background: transparent !important;
+    border: 1px solid #111 !important;
+    border-radius: 20px !important;
+    padding: 10px 15px !important;
+    margin-top: 10px !important;
+    box-sizing: border-box;
+}
+
+.comment-text {
+    font-size: 13px;
+    margin: 5px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
